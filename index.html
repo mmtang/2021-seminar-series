@@ -98,8 +98,8 @@
 					<section class="left" data-transition="none">
 						<h3 class="slide-title">What is web development?</h3>
 						<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
-							<div style="flex: 1; flex-grow: 1; color: #24BEEE; margin-right: 2.2em; padding: 0.5em; border: 1px solid #24BEEE">
-								<h5 style="color: #24BEEE; margin-bottom: 0.6em">Front-end</h5>
+							<div style="flex: 1; flex-grow: 1; color: #88e3c7; margin-right: 2.2em; padding: 0.5em; border: 1px solid #88e3c7">
+								<h5 style="color: #88e3c7; margin-bottom: 0.6em">Front-end</h5>
 								<ul style="font-size: 0.8em">
 									<li>HTML</li>
 									<li>CSS</li>
@@ -138,9 +138,29 @@
 				</section>
 
 				<!-- Slide 12 - Code examples -->
-				<section class="center">
-					<h3>HighCharts</h3>
-					<div id="highcharts"></div>
+				<section class="full">
+					<h3 style="font-size: 1em; margin-bottom: 0.8em">Highcharts</h3>
+					<div style="display: flex; flex-direction: column">
+						<div style="flex: 1; align-self: center; margin-bottom: 1em">
+							<div id="highcharts"></div>
+						</div>
+						<div style="flex: 2">
+							<pre><code data-trim data-noescape data-line-numbers="3,8-10">
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+							</code></pre>
+						</div>
+					</div>
 				</section>
 
 				<!-- Slide 13 - Code examples -->
@@ -184,25 +204,25 @@
 				<!-- Slide 9 - NYT 2013 Obama Budget -->
 				<section class="full">
 					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3>Four Ways to Slice Obama's 2013 Budget Proposal</a> - <span style="font-style: italic">The New York Times</span></h3>
-					<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>
+					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 10 - Examples -->
 				<section class="full">
 					<a href="https://deck.gl/examples/geojson-layer-paths/" target="_blank"><h3>Highway Safety in the US</a> - deck.gl</h3>
-					<iframe data-autoplay width="760" height="600" src="https://deck.gl/examples/geojson-layer-paths/" frameborder="0"></iframe>
+					<!--<iframe data-autoplay width="760" height="600" src="https://deck.gl/examples/geojson-layer-paths/" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 11 - Safe to Swim Map -->
 				<section class="full">
 					<a href="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" target="_blank"><h3>Safe to Swim Map</a> - My Water Quality Portal</h3>
-					<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>
+					<!--<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 11 - Safe to Swim Map -->
 				<section class="full">
 					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3>The America's Cup Finale: Oracle's Path to Victory</a> - <span style="font-style: italic">The New York Times</span></h3>
-					<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>
+					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 14 - Other languages  -->
@@ -258,14 +278,12 @@
 						<h3>Thank you!</h3>
 					</div>
 					<div class="intro-bottom">
-						<p class="author">Michelle Tang</p>
-						<p><small>California State Water Resources Control Board<br>
-							Office of Information Management and Analysis<br>
-							<a href="mailto:michelle.tang@waterboards.ca.gov">michelle.tang@waterboards.ca.gov</a></small>
-						</p>
-						<p>
-							<small>Slides: 2021-seminar-series.github</small>
-						</p>
+						<p>Slides / Contact</p>
+						<p><small>
+							mmtang.github.io/2021-seminar-series<br>
+							<a href="mailto:michelle.tang@waterboards.ca.gov">michelle.tang@waterboards.ca.gov</a><br>
+							<a href="https://github.com/mmtang" target="_blank">github.com/mmtang</a>
+						</small></p>
 						<img class="logo" src="././assets/data_center_logo_white_bg.jpg">
 					</div>
 				</section>
@@ -290,7 +308,8 @@
 				controls: false,
 				slideNumber: true,
 				center: false,
-				progress: false, 
+				progress: false,
+				transition: 'none',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

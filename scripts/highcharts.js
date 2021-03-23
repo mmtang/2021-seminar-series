@@ -1,63 +1,88 @@
-Highcharts.chart('highcharts', {
-    chart: {
-        type: 'scatter',
-        zoomType: 'xy'
-    },
-    data: {
-        csvURL: './data/SafeToSwim_Download_1616466659442.csv'
-    },
-    xAxis: { 
-        type: 'datetime',
+d3.csv('./data/SafeToSwim_Download.csv').then(data => {
+    const unit = data[0].Unit;
+    const seriesData = data.map(d => {
+        return { 
+            x: parseDate(d.SampleDate), 
+            y: +d.OriginalResult 
+        };
+    });
+    const sorted = seriesData.sort((a, b) => b.SampleDate - a.SampleDate);
+    drawHGraph(sorted, unit);
+});
+
+drawHGraph = (data, unit) => {
+    Highcharts.setOptions({
+        lang: {
+          thousandsSep: ','
+        }
+      });
+
+    Highcharts.chart('highcharts', {
+        chart: {
+            zoomType: 'x',
+            width: 630,
+            height: 290,
+            backgroundColor: 'transparent',
+            animation: false,
+            spacing: [15, 15, 5, 5],
+        },
         title: {
+            text: ''
+        },
+        xAxis: { 
+            type: 'datetime',
+            gridLineColor: '#fff',
+            labels: {
+                style: {
+                    color: '#fff',
+                    fontSize: '14px'
+                }
+            },
+            title: {
+                enabled: false
+            }
+        },
+        yAxis: { 
+            type: 'linear', 
+            lineColor: '#fff',
+            lineWidth: 1,
+            gridLineColor: 'transparent',
+            tickLength: 10,
+            tickWidth: 1,
+            labels: {
+                style: {
+                    color: '#fff',
+                    fontSize: '14px'
+                },
+                format: '{value::,.0f}'
+            },
+            title: {
+                enabled: false
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                marker: {
+                    radius: 6
+                }
+            }
+        },
+        series: [{
+            type: 'scatter',
+            data: data,
+            stickyTracking: true,
+            color: '#FFC0CB'
+        }],
+        tooltip: {
+            formatter: function() {
+                return  '<b>' + Highcharts.dateFormat('%b %e, %Y', new Date(this.x)) +'</b><br/>' + this.y + ' ' + unit;
+            }
+        },
+        credits: {
             enabled: false
         }
-    },
-    yAxis: { 
-        type: 'linear', 
-        title: {
-            text: unit
-        } 
-    },
+    });
 }
-
-
-
-
-const options = {
-    title: {
-    text: ''
-    },
-    chart: {
-        animation: false,
-        spacing: [25, 25, 15, 15],
-        type: 'scatter'
-    },
-    credits: {
-        enabled: false
-    },
-    xAxis: { 
-        type: 'datetime',
-        title: {
-            enabled: false
-        }
-    },
-    yAxis: { 
-        type: 'linear', 
-        title: {
-            text: unit
-        } 
-    },
-    series: {
-        data: data.values.map((d) => ({ x: d.SampleDate, y: +d.Result.toFixed(2) })),
-        color: '#333333',
-        stickyTracking: false
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        formatter: function() {
-            return  '<b>' + Highcharts.dateFormat('%b %e, %Y', new Date(this.x)) +'</b><br/>' + this.y + ' ' + unit;
-        }
-    }
-};

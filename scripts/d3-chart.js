@@ -9,7 +9,7 @@ d3.csv('./data/SafeToSwim_Download.csv').then(data => {
 });
 
 drawGraph = (data) => {
-    const margin = { top: 10, right: 30, bottom: 100, left: 45 };
+    const margin = { top: 10, right: 20, bottom: 70, left: 45 };
     const options = {
         width: 640 - margin.top - margin.bottom,
         height: 320 - margin.left - margin.right,
@@ -69,10 +69,10 @@ drawGraph = (data) => {
         .data(options.data)
         .enter().append('circle')
         .attr('class', 'circle')
-        .attr('r', 6)
+        .attr('r', 4)
         .attr('cx', d => xScale(d.SampleDate))
         .attr('cy', d => yScale(d.Result))
-        .attr('fill', 'pink')
+        .attr('fill', '#FFC0CB')
         .style('opacity', 0.8)
     points.exit()
         .remove();

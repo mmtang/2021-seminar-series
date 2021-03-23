@@ -17,7 +17,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --background-color: #243941;
+  --background-color: #03506f;
   --main-font: Ubuntu, sans-serif;
   --main-font-size: 40px;
   --main-color: #eee;
@@ -42,8 +42,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --selection-color: #fff; }
 
 .reveal-viewport {
-  background: #243941;
-  background-color: #243941; }
+  background: #03506f;
+  background-color: #03506f; }
 
 .reveal {
   font-family: Ubuntu, "sans-serif";
@@ -52,13 +52,13 @@ section.has-light-background, section.has-light-background h1, section.has-light
   color: #eee; }
 
 .reveal ::selection {
-  color: #fff;
-  background: #24BEEE;
+  color: #03506f;
+  background: #a3ddcb;
   text-shadow: none; }
 
 .reveal ::-moz-selection {
-  color: #fff;
-  background: #a23;
+  color: #03506f;
+  background: #a3ddcb;
   text-shadow: none; }
 
 .reveal .slides section,
@@ -306,12 +306,12 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * LINKS
  *********************************************/
 .reveal a {
-  color: #A6C8E4;
+  color: #a3ddcb;
   text-decoration: none;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #24BEEE;
+  color: #fff;
   text-shadow: none;
   border: none; }
 
