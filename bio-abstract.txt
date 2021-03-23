@@ -1,0 +1,7 @@
+Speaker: Michelle Tang
+
+Speaker Bio:  Michelle Tang is an Environmental Scientist in the Office of Information Management and Analysis at the California State Water Resources Control Board. She has been working at the State Water Board forover eight years and specializes in web development, data visualization, and GIS. Her current work focuses on developing tools andresources to make water quality data more accessible and usable for all. Michelle completed her bachelor’s degree in Geography from the Universityof California, Berkeley. 
+
+Seminar Title: A Casual Introduction to Data Visualization for the Web.
+ 
+Seminar Description: JavaScript is the lingua franca of the web. It is everywhere, used by over 97 percent of the top ten million websites in the world. Many know of JavaScript as the programming language of the web, but in recent years its use has expanded to other technologies and domains, including data science. JavaScript is widely used for creating interactive data visualizations on the web. It offers extraordinary power and flexibility to create almost any data visualization imaginable, from simple bar chartsto massive force-directed graphs. In this presentation, I will introduce the world of web development through the lens of data visualization and discuss how web technologies can transform how we collect and communicate data. 

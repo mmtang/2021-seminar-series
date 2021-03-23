@@ -1,0 +1,24 @@
+.vennTooltip {
+    position: absolute;
+    background-color: rgb(209, 238, 241);
+    width: 378px;
+    left: 440px;
+    top: 437px;
+    font-family: Ubuntu, sans-serif;
+    padding: 0.8em;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 5000;
+    opacity: 0;
+}
+
+.tooltipImage {
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
+    width: 70%;
+}
+
+.tooltip-title {
+    font-size: 1em;
+    font-weight: 400;
+}

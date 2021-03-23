@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>A Casual Introduction to Data Visualization for the Web</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/custom.css" id="theme">
+		<link rel="stylesheet" href="scripts/venn-diagram.css">
+		<link rel="stylesheet" href="scripts/d3-chart.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+		<!-- JavaScript imports -->
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script href="https://code.highcharts.com/modules/venn.js"></script>	
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Slide 1 - Title -->
+				<section class="center">
+					<div class="intro-top">
+						<h3 style="margin-bottom: 20px">A Casual Introduction to <br>Data Visualization for the Web</h3>
+						<p><small>Water Data Seminar Series&nbsp;&nbsp;|&nbsp;&nbsp;March 25, 2021</small> 
+						</p>
+					</div>
+					<div class="intro-bottom">
+						<p class="author">Michelle Tang</p>
+						<p><small>California State Water Resources Control Board<br>
+							Office of Information Management and Analysis</small>
+						</p>
+						<img class="logo" src="././assets/data_center_logo_white_bg.jpg">
+					</div>
+				</section>
+
+				<!-- Slide 3 - Background -->
+				<section class="center">
+					<h3>Background</h3>
+				</section>
+
+				<!-- Slide 4 - The web as a platform -->
+				<section class="left">
+					<h3 class="slide-title">The web as a platform</h3>
+					<div style="display: flex; flex-direction: row">
+						<div style="flex: 1">
+							<ul>
+								<li>Ubiquitous</li>
+								<li>Open standards</li>
+								<li>Cross-platform</li>
+								<li>Accessibile</li>
+								<li>Low barrier to entry</li>
+								<!-- https://codepen.io/tigt/post/low-barrier-to-entry-the-most-powerful-characteristic-of-the-web -->
+							</ul>
+						</div>
+						<div style="flex: 2; max-width: 450px; text-align: right">
+							<figure>
+								<img id="internet-viz" src="assets/opte-project.png" style="margin: 10px 0 0 0">
+								<figcaption><a href="https://www.opte.org/" target="_blank">The Opte Project</a></figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 5 - The web as a platform -->
+				<section>
+					<section class="left" data-transition="none">
+						<h3 class="slide-title">What is web development?</h3>
+						<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
+							<div style="flex: 1; flex-grow: 1; margin-right: 2.2em; padding: 0.5em; border: 1px solid #fff">
+								<h5 style="margin-bottom: 0.6em">Front-end</h5>
+								<ul style="font-size: 0.8em">
+									<li>HTML</li>
+									<li>CSS</li>
+									<li>JavaScript</li>
+									<li>Accessibility</li>
+									<li>User interface design / experience</li>
+								</ul>
+							</div>
+							<div style="flex: 2; flex-grow: 1; padding: 0.5em; border: 1px solid #fff">
+								<h5 style="margin-bottom: 0.6em">Back-end</h5>
+								<ul style="font-size: 0.8em">
+									<li>Server code</li>
+									<li>Databases</li>
+									<li>System architecture</li>
+									<li>Scalability</li>
+									<li>Security</li>
+									<li>APIs</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<!-- Vertical slide with highlight -->
+					<section class="left" data-transition="none">
+						<h3 class="slide-title">What is web development?</h3>
+						<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
+							<div style="flex: 1; flex-grow: 1; color: #24BEEE; margin-right: 2.2em; padding: 0.5em; border: 1px solid #24BEEE">
+								<h5 style="color: #24BEEE; margin-bottom: 0.6em">Front-end</h5>
+								<ul style="font-size: 0.8em">
+									<li>HTML</li>
+									<li>CSS</li>
+									<li>JavaScript</li>
+									<li>Accessibility</li>
+									<li>User interface design / experience</li>
+								</ul>
+							</div>
+							<div style="flex: 2; flex-grow: 1; padding: 0.5em; border: 1px solid #fff">
+								<h5 style="margin-bottom: 0.6em">Back-end</h5>
+								<ul style="font-size: 0.8em">
+									<li>Server code</li>
+									<li>Databases</li>
+									<li>System architecture</li>
+									<li>Scalability</li>
+									<li>Security</li>
+									<li>APIs</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<!-- Slide 6 - Data science vs. Web development -->
+				<section class="center">
+					<h3 style="font-size: 1em">Data science vs. Web development</h3>
+					<div id="venn" styles="max-width: 600px; min-width: 300px"></div>
+				</section>
+
+				<!-- Slide 11 - Data Visualization Libraries -->
+				<section class="left">
+					<h3 style="font-size: 1.2em">JavaScript Data Visualization Libraries</h3>
+					<ul>
+						<li>From high level to low level</li>
+					</ul>
+				</section>
+
+				<!-- Slide 12 - Code examples -->
+				<section class="center">
+					<h3>HighCharts</h3>
+					<div id="highcharts"></div>
+				</section>
+
+				<!-- Slide 13 - Code examples -->
+				<section class="full">
+					<h3 style="font-size: 1em; margin-bottom: 0.8em">D3.js</h3>
+					<div style="display: flex; flex-direction: column">
+						<div style="flex: 1">
+							<div id="d3-chart"></div>
+						</div>
+						<div style="flex: 2">
+							<pre><code data-trim data-noescape data-line-numbers="3,8-10">
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+								console.log('hello');
+								console.log('bye');
+							</code></pre>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 14 - Other languages  -->
+				<section class="left">
+					<h3>Best use cases</h3>
+				</section>
+
+				<!-- Slide 8 - Examples -->
+				<!-- Check out https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html -->
+				<section>
+					<h3>Data Visualization on the Web - Examples</h3>
+					Example 1
+				</section>
+
+				<!-- Slide 9 - NYT 2013 Obama Budget -->
+				<section class="full">
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3>Four Ways to Slice Obama's 2013 Budget Proposal</a> - <span style="font-style: italic">The New York Times</span></h3>
+					<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>
+				</section>
+
+				<!-- Slide 10 - Examples -->
+				<section class="full">
+					<a href="https://deck.gl/examples/geojson-layer-paths/" target="_blank"><h3>Highway Safety in the US</a> - deck.gl</h3>
+					<iframe data-autoplay width="760" height="600" src="https://deck.gl/examples/geojson-layer-paths/" frameborder="0"></iframe>
+				</section>
+
+				<!-- Slide 11 - Safe to Swim Map -->
+				<section class="full">
+					<a href="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" target="_blank"><h3>Safe to Swim Map</a> - My Water Quality Portal</h3>
+					<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>
+				</section>
+
+				<!-- Slide 11 - Safe to Swim Map -->
+				<section class="full">
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3>The America's Cup Finale: Oracle's Path to Victory</a> - <span style="font-style: italic">The New York Times</span></h3>
+					<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>
+				</section>
+
+				<!-- Slide 14 - Other languages  -->
+				<section class="left">
+					<h3>Other platforms and languages</h3>
+				</section>
+
+				<!-- Slide 16 - Future of web development  -->
+				<section class="left">
+					<h3 style="margin-bottom: 0.8em">Looking ahead</h3>
+					<div style="display: flex; flex-direction: row">
+						<div style="flex: 1; padding: 0 0.8em 0 0">
+							<ul>
+								<li>Integration with data science (browser & server)</li>
+								<li>Progressive web apps</li>
+								<li>Machine learning</li>
+							</ul>
+						</div>
+						<div style="flex: 2; max-width: 340px; text-align: right">
+							<blockquote>Software ate the world, the web ate software, and JavaScript ate the web.</blockquote>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 17 - Getting started  -->
+				<section class="left">
+					<h3 style="font-size: 1.4em">Getting started</h3>
+					<div style="display: flex; flex-direction: row">
+						<div style="flex: 1; padding: 0 0.8em 0 0">
+							<ul>
+								<li>HTML, CSS, JavaScript</li>
+								<li>Save frameworks for later</li>
+								<li>Resources</li>
+									<ul>
+										<li><a href="https://developer.mozilla.org/en-US/" target="_blank">Mozilla Developer Network</a></li>
+										<li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></li>
+										<li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript</a></li>
+										<li><a href="https://alignedleft.com/work/d3-book" target="_blank">Interactive Data Visualization for the Web</a></li>
+									</ul>
+							</ul>
+						</div>
+						<div style="flex: 2; max-width: 340px; text-align: right">
+							<figure>
+								<img style="margin-right: 20px" src="./assets/murray_book.jpg">
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 18 - Contact  -->
+				<section class="center">
+					<div class="intro-top" style="margin-bottom: 2.2em">
+						<h3>Thank you!</h3>
+					</div>
+					<div class="intro-bottom">
+						<p class="author">Michelle Tang</p>
+						<p><small>California State Water Resources Control Board<br>
+							Office of Information Management and Analysis<br>
+							<a href="mailto:michelle.tang@waterboards.ca.gov">michelle.tang@waterboards.ca.gov</a></small>
+						</p>
+						<p>
+							<small>Slides: 2021-seminar-series.github</small>
+						</p>
+						<img class="logo" src="././assets/data_center_logo_white_bg.jpg">
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://d3js.org/d3.v6.min.js"></script>
+		<script src="lib/venn.js"></script>
+		<script src="scripts/venn-diagram.js"></script>
+		<script src="scripts/highcharts.js"></script>
+		<script src="scripts/d3-chart.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				controls: false,
+				slideNumber: true,
+				center: false,
+				progress: false, 
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+
+
+		</script>
+	</body>
+</html>
