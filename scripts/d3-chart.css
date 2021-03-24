@@ -1,0 +1,17 @@
+#tooltipPoint {
+    max-width: 325px;
+    height: auto;
+    position: absolute;
+    text-align: left;
+    vertical-align: middle;
+    padding: 8px 12px 8px 10px;
+    font-family: Ubuntu, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    border-radius: 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid;
+    z-index: 5000;
+}

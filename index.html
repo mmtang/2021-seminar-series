@@ -6,14 +6,14 @@
 
 		<title>A Casual Introduction to Data Visualization for the Web</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/custom.css" id="theme">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css" id="theme">
 		<link rel="stylesheet" href="scripts/venn-diagram.css">
 		<link rel="stylesheet" href="scripts/d3-chart.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<link rel="stylesheet" href="lib/plugin/highlight/night-owl.css" id="highlight-theme">
 
 		<!-- JavaScript imports -->
 		<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -125,85 +125,307 @@
 
 				<!-- Slide 6 - Data science vs. Web development -->
 				<section class="center">
-					<h3 style="font-size: 1em">Data science vs. Web development</h3>
+					<h3 style="font-size: 1.2em">Data science vs. Web development</h3>
 					<div id="venn" styles="max-width: 600px; min-width: 300px"></div>
 				</section>
 
 				<!-- Slide 11 - Data Visualization Libraries -->
 				<section class="left">
-					<h3 style="font-size: 1.2em">JavaScript Data Visualization Libraries</h3>
-					<ul>
-						<li>From high level to low level</li>
-					</ul>
+					<h3 style="font-size: 1.2em; margin-bottom: 1em">JavaScript Data Visualization Libraries</h3>
+					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
+						<div style="flex: 1; font-size: 0.7em">
+							<h4 style="font-size: 0.9em; margin-bottom: 0.6em">High level</h4>
+							<ul>
+								<li>High level of abstraction</li>
+								<li>Easy to use</li>
+								<li>Less customizable</li>
+							</ul>
+							<h4 style="font-size: 0.9em; margin-top: 1.2em; margin-bottom: 0.6em">Low level</h4>
+							<ul>
+								<li>"Close to the hardware"</li>
+								<li>More difficult and time-consuming to use</li>
+								<li>Flexible, customizable</li>
+							</ul>
+						</div>
+						<div style="flex: 2; align-self: center; max-width: 600px">
+							<figure style="text-align: right;">
+								<img style="margin: auto" src="assets/data_viz_abstraction.png">
+								<a href="https://conlanscientific.com/posts/category/blog/post/use-d3-for-charts-dont-exist-yet/" target="_blank"><figcaption style="text-align: right; margin-top: 0.2em">Conlan Scientific</figcaption></a>
+							</figure>
+						</div>
+					</div>
 				</section>
 
 				<!-- Slide 12 - Code examples -->
-				<section class="full">
-					<h3 style="font-size: 1em; margin-bottom: 0.8em">Highcharts</h3>
+				<section class="center">
+					<a href="https://www.highcharts.com/" target="_blank"><img style="width: 35%; margin: 0" src="assets/highcharts-logo.png" alt="Highcharts"></a>
 					<div style="display: flex; flex-direction: column">
-						<div style="flex: 1; align-self: center; margin-bottom: 1em">
+						<div style="flex: 1; align-self: center; margin-bottom: 0.5em">
 							<div id="highcharts"></div>
 						</div>
-						<div style="flex: 2">
-							<pre><code data-trim data-noescape data-line-numbers="3,8-10">
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
+						<div style="flex: 2; margin-left: 1em">
+							<pre><code data-trim data-noescape data-line-numbers>
+								drawHGraph = (data, unit) => {
+									Highcharts.setOptions({
+										lang: {
+										  thousandsSep: ','
+										}
+									});
+								
+									Highcharts.chart('highcharts', {
+										chart: {
+											zoomType: 'x',
+											width: 700,
+											height: 280,
+											backgroundColor: 'transparent',
+											animation: false,
+											spacing: [15, 30, 5, 5],
+										},
+										title: {
+											text: ''
+										},
+										xAxis: { 
+											type: 'datetime',
+											gridLineColor: '#fff',
+											labels: {
+												style: {
+													color: '#fff',
+													fontSize: '14px'
+												}
+											},
+											title: {
+												enabled: false
+											}
+										},
+										yAxis: { 
+											type: 'linear', 
+											lineColor: '#fff',
+											lineWidth: 1,
+											gridLineColor: 'transparent',
+											tickLength: 10,
+											tickWidth: 1,
+											labels: {
+												style: {
+													color: '#fff',
+													fontSize: '14px'
+												},
+												format: '{value::,.0f}'
+											},
+											title: {
+												enabled: false
+											}
+										},
+										legend: {
+											enabled: false
+										},
+										plotOptions: {
+											area: {
+												marker: {
+													radius: 6
+												}
+											}
+										},
+										series: [{
+											type: 'scatter',
+											data: data,
+											stickyTracking: true,
+											color: '#FFC0CB'
+										}],
+										tooltip: {
+											formatter: function() {
+												return  '<b>' + Highcharts.dateFormat('%b %e, %Y', new Date(this.x)) +'</b><br/>' + this.y + ' ' + unit;
+											}
+										},
+										credits: {
+											enabled: false
+										}
+									});
+								}
 							</code></pre>
 						</div>
 					</div>
 				</section>
 
 				<!-- Slide 13 - Code examples -->
-				<section class="full">
-					<h3 style="font-size: 1em; margin-bottom: 0.8em">D3.js</h3>
+				<section class="center">
+					<a href="https://d3js.org/" target="_blank"><img style="width: 36%; margin: 0.4em 0 0 0" src="assets/d3_logo.png" alt="Data Driven Documents (D3)"></a>
 					<div style="display: flex; flex-direction: column">
 						<div style="flex: 1">
 							<div id="d3-chart"></div>
 						</div>
-						<div style="flex: 2">
-							<pre><code data-trim data-noescape data-line-numbers="3,8-10">
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
-								console.log('hello');
-								console.log('bye');
+						<div style="flex: 2; margin-left: 1em">
+							<pre><code data-trim data-noescape data-line-numbers>
+								drawGraph = (data) => {
+									const margin = { top: 10, right: 50, bottom: 50, left: 50 };
+									const options = {
+										width: 700 - margin.left - margin.right,
+										height: 300 - margin.top - margin.bottom,
+										data: data
+									};
+								
+									// Initialize chart
+									const svg = d3.select('#d3-chart').append('svg')
+										.attr('id', 'graph')
+										.attr('width', options.width + margin.left + margin.right)
+										.attr('height', options.height + margin.top + margin.bottom);
+									const focus = svg.append('g')
+										.attr('class', 'focus')
+										.attr('transform', 'translate(' + margin.left + ', ' + (margin.top) + ')');
+									
+									// Initialize tooltip
+									d3.select('body').append('div')
+										.attr('id', 'tooltipPoint')
+										.attr('class', 'tooltip')
+										.style('opacity', 0);
+								
+									// Clip path to width of chart element
+									svg.append('defs').append('clipPath')
+										.attr('id', 'clip')
+										.append('rect')
+											.attr('width', options.width)
+											.attr('height', options.height);
+								
+									// Create scales
+									const xExtent = d3.extent(options.data, (d,i) => d.SampleDate);
+									var yMax = d3.max(options.data, d => d.Result); 
+									var yBuffered = Math.ceil(yMax + (yMax / 10));
+									const xScale = d3.scaleTime()
+										.domain(xExtent)
+										.range([0, options.width]);
+									const yScale = d3.scaleLinear()
+										.domain([0, yBuffered])
+										.range([options.height, 0]);
+								
+									// Add axes
+									const xAxis = d3.axisBottom()
+										.scale(xScale)
+										.ticks(5);
+									const yAxis = d3.axisLeft()
+										.scale(yScale)
+										.ticks(5);
+									focus.append('g')
+										.attr('class', 'x-axis')
+										.attr('transform', 'translate(0,' + options.height + ')')
+										.style('font-size', '14px')
+										.attr('color', '#fff')
+										.call(xAxis);
+									focus.append('g')
+										.attr('class', 'y-axis')
+										.style('font-size', '14px')
+										.attr('color', '#fff')
+										.call(yAxis);
+								
+									// Draw points
+									var points = focus.append('g')
+										.attr('clip-path', 'url(#clip)');
+									points.selectAll('.circle')
+										.data(options.data)
+										.enter().append('circle')
+										.attr('class', 'circle')
+										.attr('r', 4)
+										.attr('cx', d => xScale(d.SampleDate))
+										.attr('cy', d => yScale(d.Result))
+										.attr('fill', '#FFC0CB')
+										.style('opacity', 0.9)
+										.on('mouseover', (event, d) => {
+											// Change style
+											d3.select(event.currentTarget).style('fill', '#fff');
+											d3.select(event.currentTarget).attr('r', 8);
+											// Show tooltip
+											d3.select('#tooltipPoint') 
+												.transition()
+												.duration(200)
+												.style('opacity', 1);
+											d3.select('#tooltipPoint')
+												.html(() => {
+													const tooltipDate = d3.timeFormat('%b %e, %Y');
+													return '<strong>' + tooltipDate(d.SampleDate) + '</strong><br>' + d['CalculatedResult'].toString() + ' ' + d.Unit;
+												})
+												.style('left', () => positionTooltipX(event))
+												.style('top', () => positionTooltipY(event))
+												.style('border-color', '#FFC0CB');
+										})
+										.on('mouseout', function() {
+											d3.select(event.currentTarget).style('fill', '#FFC0CB');
+											d3.select(event.currentTarget).attr('r', 4);
+											// Hide tooltip
+											d3.select('#tooltipPoint') 
+												.transition()
+												.duration(200)
+												.style('opacity', 0);
+										})
+									points.exit()
+										.remove();
+								}
+								
+								const positionTooltipX = (e) => {
+									var eventPos = e.pageX; // get mouse position
+									var divExtent = document.getElementById('d3-chart').offsetWidth; // get width of container holding chart
+									var divOffset = document.getElementById('d3-chart').offsetLeft; // get offset of chart container from left (parent container)
+									var tooltipExtent = document.getElementById('tooltipPoint').offsetWidth; // get tooltip div width
+									// calculate element position within container
+									var relativePos = eventPos - divOffset; 
+									if (relativePos <= (divExtent / 2)) {
+										// if event is in the left half of chart
+										return eventPos + 'px';
+									} else {
+										// if event is in the right half of chart
+										return eventPos - tooltipExtent + 'px';
+									}
+								}
+								
+								const positionTooltipY = (e) => {
+									var eventPos = e.pageY; // get mouse position
+									var divExtent = document.getElementById('d3-chart').offsetHeight; // get height of container holding chart
+									var divOffset = document.getElementById('d3-chart').offsetTop; // get offset of chart container from left (parent container)
+									var tooltipExtent = document.getElementById('tooltipPoint').offsetHeight; // get tooltip div height
+									// calculate element position within container
+									var relativePos = eventPos - divOffset; 
+									if (relativePos <= (divExtent / 2)) {
+										// if event is in the top half of chart
+										return eventPos + 'px';
+									} else {
+										// if event is in the bottom half of chart
+										return eventPos - tooltipExtent + 'px';
+									}
+								}
 							</code></pre>
 						</div>
 					</div>
 				</section>
 
 				<!-- Slide 14 - Other languages  -->
-				<section class="left">
-					<h3>Best use cases</h3>
+				<section class="center" data-background-image="./assets/dawn_wall_nyt.png" data-background-size="cover" style="margin-top: 0.6em">
+					<div style="display: flex; flex-direction: column; justify-content: center; text-align: left;">
+						<div style="flex: 1; max-width: 45%; font-size: 0.7em">
+							<h3>Best use cases</h3>
+							<ul class="spaced">
+								<li>Unique and highly customized visualizations</li>
+								<li>Non-standard interactivity</li>
+								<li>Interaction between visualization and user interface</li>
+								<li>High performance</li>
+								<li>Storytelling</li>
+							</ul>
+							<p style="margin: 1.6em 0; font-size: 0.9em"><small>Background: <a href="https://www.nytimes.com/interactive/2015/01/09/sports/the-dawn-wall-el-capitan.html" target="_blank">The Dawn Wall</a> - <span style="font-style: italic">The New York Times</span> (2015)</small></p>
+						</div>
+					</section>
 				</section>
 
-				<!-- Slide 8 - Examples -->
-				<!-- Check out https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html -->
-				<section>
-					<h3>Data Visualization on the Web - Examples</h3>
-					Example 1
+				<!-- Slide 11 - Safe to Swim Map -->
+				<section class="full">
+					<a href="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" target="_blank"><h3>Safe to Swim Map</a> - My Water Quality Portal</h3>
+					<!--<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>-->
+				</section>
+
+				<!-- Slide 11 - Safe to Swim Map -->
+				<section class="full">
+					<a href="https://gispublic.waterboards.ca.gov/swamp/r6/index.html" target="_blank"><h3>Water Quality Dashboard</a> - Lahontan Regional Water Board</h3>
+					<!--<iframe data-autoplay width="960" height="600" src="https://gispublic.waterboards.ca.gov/swamp/r6/index.html" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 9 - NYT 2013 Obama Budget -->
 				<section class="full">
-					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3>Four Ways to Slice Obama's 2013 Budget Proposal</a> - <span style="font-style: italic">The New York Times</span></h3>
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3>Four Ways to Slice Obama's 2013 Budget Proposal</a><br> - <span style="font-style: italic">The New York Times</span> (2012)</h3>
 					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>-->
 				</section>
 
@@ -215,43 +437,61 @@
 
 				<!-- Slide 11 - Safe to Swim Map -->
 				<section class="full">
-					<a href="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" target="_blank"><h3>Safe to Swim Map</a> - My Water Quality Portal</h3>
-					<!--<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>-->
-				</section>
-
-				<!-- Slide 11 - Safe to Swim Map -->
-				<section class="full">
-					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3>The America's Cup Finale: Oracle's Path to Victory</a> - <span style="font-style: italic">The New York Times</span></h3>
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3>The America's Cup Finale: Oracle's Path to Victory</a><br> - <span style="font-style: italic">The New York Times</span> (2013)</h3>
 					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>-->
 				</section>
 
 				<!-- Slide 14 - Other languages  -->
 				<section class="left">
-					<h3>Other platforms and languages</h3>
-				</section>
-
-				<!-- Slide 16 - Future of web development  -->
-				<section class="left">
-					<h3 style="margin-bottom: 0.8em">Looking ahead</h3>
-					<div style="display: flex; flex-direction: row">
-						<div style="flex: 1; padding: 0 0.8em 0 0">
+					<h3 style="font-size: 1.4em; margin-bottom: 1em">Other platforms and languages</h3>
+					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.6em;">
+						<div style="flex: 1; font-size: 0.7em">
+							<h4 style="font-size: 0.9em; margin-bottom: 0.6em">Python</h4>
 							<ul>
-								<li>Integration with data science (browser & server)</li>
-								<li>Progressive web apps</li>
-								<li>Machine learning</li>
+								<li><a href="https://altair-viz.github.io/" target="_blank">Altair</a>, <a href="https://mpld3.github.io/" target="_blank">mpld3</a>, <a href="https://plotly.com/python/" target="_blank">Plotly Python</a></li>
+							</ul>
+							<h4 style="font-size: 0.9em; margin-top: 0.8em; margin-bottom: 0.6em">R / R Shiny</h4>
+							<ul>
+								<li><a href="https://rstudio.github.io/r2d3/" target="_blank">r2d3</a>, <a href="https://ggvis.rstudio.com/">ggvis</a>, <a href="http://ramnathv.github.io/rCharts/" target="_blank">rCharts</a>, <a href="https://plotly-r.com/" target="_blank">Plotly R</a></li>
+							</ul>
+							<h4 style="font-size: 0.9em; margin-top: 0.8em; margin-bottom: 0.6em">C++</h4>
+							<ul>
+								<li><a href="https://github.com/devosoft/Empirical" target="_blank">Empirical</a>
 							</ul>
 						</div>
-						<div style="flex: 2; max-width: 340px; text-align: right">
-							<blockquote>Software ate the world, the web ate software, and JavaScript ate the web.</blockquote>
+						<div style="flex: 2; align-self: center; max-width: 550px">
+							<figure style="text-align: right;">
+								<img style="margin: auto" src="assets/data_viz_abstraction.png">
+								<a href="https://conlanscientific.com/posts/category/blog/post/use-d3-for-charts-dont-exist-yet/" target="_blank"><figcaption style="text-align: right; margin-top: 0.2em">Conlan Scientific</figcaption></a>
+							</figure>
 						</div>
 					</div>
 				</section>
+
+				<!-- Slide 16 - Future of web development  -->
+				<!--
+				<section class="left">
+					<h3 style="font-size: 1.4em; margin-bottom: 0.8em">Looking ahead</h3>
+					<div style="display: flex; flex-direction: row">
+						<div style="flex: 1; padding: 0 0.8em 0 0">
+							<ul class="spaced">
+								<li>More integration with data science</li>
+								<li>Progressive web applications</li>
+								<li>Machine learning</li>
+							</ul>
+						</div>
+						<div style="flex: 2; max-width: 300px; text-align: right">
+							<blockquote><a href="https://medium.com/javascript-scene/how-popular-is-javascript-in-2019-823712f7c4b1" target="_blank">"Software ate the world, the web ate software, and JavaScript ate the web."</a></blockquote>
+						</div>
+					</div>
+				</section>
+				-->
 
 				<!-- Slide 17 - Getting started  -->
 				<section class="left">
 					<h3 style="font-size: 1.4em">Getting started</h3>
 					<div style="display: flex; flex-direction: row">
-						<div style="flex: 1; padding: 0 0.8em 0 0">
+						<div style="flex: 1; font-size: 0.9em; padding: 0 0.8em 0 0">
 							<ul>
 								<li>HTML, CSS, JavaScript</li>
 								<li>Save frameworks for later</li>
@@ -259,8 +499,8 @@
 									<ul>
 										<li><a href="https://developer.mozilla.org/en-US/" target="_blank">Mozilla Developer Network</a></li>
 										<li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></li>
-										<li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript</a></li>
 										<li><a href="https://alignedleft.com/work/d3-book" target="_blank">Interactive Data Visualization for the Web</a></li>
+										<li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript</a></li>
 									</ul>
 							</ul>
 						</div>
@@ -271,16 +511,20 @@
 						</div>
 					</div>
 				</section>
+				
 
 				<!-- Slide 18 - Contact  -->
 				<section class="center">
-					<div class="intro-top" style="margin-bottom: 2.2em">
-						<h3>Thank you!</h3>
+					<div class="intro-top" style="margin-bottom: 2em">
+						<h3 style="font-size: 1.2em;">Thank you!</h3>
 					</div>
 					<div class="intro-bottom">
-						<p>Slides / Contact</p>
+						<p>Slides</p>
 						<p><small>
-							mmtang.github.io/2021-seminar-series<br>
+							<a href="https://mmtang.github.io/2021-seminar-series" target="_blank">mmtang.github.io/2021-seminar-series</a><br>
+						</small></p>
+						<p>Contact</p>
+						<p><small>
 							<a href="mailto:michelle.tang@waterboards.ca.gov">michelle.tang@waterboards.ca.gov</a><br>
 							<a href="https://github.com/mmtang" target="_blank">github.com/mmtang</a>
 						</small></p>
@@ -290,10 +534,10 @@
 			</div>
 		</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
+		<script src="lib/reveal.js"></script>
+		<script src="lib/plugin/notes/notes.js"></script>
+		<script src="lib/plugin/markdown/markdown.js"></script>
+		<script src="lib/plugin/highlight/highlight.js"></script>
 		<script src="https://d3js.org/d3.v6.min.js"></script>
 		<script src="lib/venn.js"></script>
 		<script src="scripts/venn-diagram.js"></script>
@@ -310,6 +554,8 @@
 				center: false,
 				progress: false,
 				transition: 'none',
+				backgroundTransition: 'none',
+				margin: 0.02,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

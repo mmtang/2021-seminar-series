@@ -9,21 +9,27 @@ d3.csv('./data/SafeToSwim_Download.csv').then(data => {
 });
 
 drawGraph = (data) => {
-    const margin = { top: 10, right: 20, bottom: 70, left: 45 };
+    const margin = { top: 20, right: 10, bottom: 40, left: 50 };
     const options = {
-        width: 640 - margin.top - margin.bottom,
-        height: 320 - margin.left - margin.right,
+        width: 700 - margin.left - margin.right,
+        height: 280 - margin.top - margin.bottom,
         data: data
     };
 
     // Initialize chart
     const svg = d3.select('#d3-chart').append('svg')
         .attr('id', 'graph')
-        .attr('width', options.width + margin.top + margin.bottom)
-        .attr('height', options.height + margin.left + margin.right);
+        .attr('width', options.width + margin.left + margin.right)
+        .attr('height', options.height + margin.top + margin.bottom);
     const focus = svg.append('g')
         .attr('class', 'focus')
         .attr('transform', 'translate(' + margin.left + ', ' + (margin.top) + ')');
+    
+    // Initialize tooltip
+    d3.select('body').append('div')
+        .attr('id', 'tooltipPoint')
+        .attr('class', 'tooltip')
+        .style('opacity', 0);
 
     // Clip path to width of chart element
     svg.append('defs').append('clipPath')
@@ -73,8 +79,67 @@ drawGraph = (data) => {
         .attr('cx', d => xScale(d.SampleDate))
         .attr('cy', d => yScale(d.Result))
         .attr('fill', '#FFC0CB')
-        .style('opacity', 0.8)
+        .style('opacity', 0.9)
+        .on('mouseover', (event, d) => {
+            // Change style
+            d3.select(event.currentTarget).style('fill', '#fff');
+            d3.select(event.currentTarget).attr('r', 8);
+            // Show tooltip
+            d3.select('#tooltipPoint') 
+                .transition()
+                .duration(50)
+                .style('opacity', 1);
+            d3.select('#tooltipPoint')
+                .html(() => {
+                    const tooltipDate = d3.timeFormat('%b %e, %Y');
+                    return '<strong>' + tooltipDate(d.SampleDate) + '</strong><br>' + d['CalculatedResult'].toString() + ' ' + d.Unit;
+                })
+                .style('left', () => positionTooltipX(event))
+                .style('top', () => positionTooltipY(event))
+                .style('border-color', '#FFC0CB');
+        })
+        .on('mouseout', function() {
+            d3.select(event.currentTarget).style('fill', '#FFC0CB');
+            d3.select(event.currentTarget).attr('r', 4);
+            // Hide tooltip
+            d3.select('#tooltipPoint') 
+                .transition()
+                .duration(200)
+                .style('opacity', 0);
+        })
     points.exit()
         .remove();
-
 }
+
+const positionTooltipX = (e) => {
+    var eventPos = e.pageX; // get mouse position
+    var divExtent = document.getElementById('d3-chart').offsetWidth; // get width of container holding chart
+    var divOffset = document.getElementById('d3-chart').offsetLeft; // get offset of chart container from left (parent container)
+    var tooltipExtent = document.getElementById('tooltipPoint').offsetWidth; // get tooltip div width
+    // calculate element position within container
+    var relativePos = eventPos - divOffset; 
+    if (relativePos <= (divExtent / 2)) {
+        // if event is in the left half of chart
+        return eventPos + 'px';
+    } else {
+        // if event is in the right half of chart
+        return eventPos - tooltipExtent + 'px';
+    }
+}
+
+const positionTooltipY = (e) => {
+    var eventPos = e.pageY; // get mouse position
+    var divExtent = document.getElementById('d3-chart').offsetHeight; // get height of container holding chart
+    var divOffset = document.getElementById('d3-chart').offsetTop; // get offset of chart container from left (parent container)
+    var tooltipExtent = document.getElementById('tooltipPoint').offsetHeight; // get tooltip div height
+    // calculate element position within container
+    var relativePos = eventPos - divOffset; 
+    if (relativePos <= (divExtent / 2)) {
+        // if event is in the top half of chart
+        return eventPos + 'px';
+    } else {
+        // if event is in the bottom half of chart
+        return eventPos - tooltipExtent + 'px';
+    }
+}
+

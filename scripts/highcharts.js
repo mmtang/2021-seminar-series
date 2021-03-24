@@ -20,11 +20,10 @@ drawHGraph = (data, unit) => {
     Highcharts.chart('highcharts', {
         chart: {
             zoomType: 'x',
-            width: 630,
-            height: 290,
+            width: 700,
+            height: 250,
             backgroundColor: 'transparent',
-            animation: false,
-            spacing: [15, 15, 5, 5],
+            animation: false
         },
         title: {
             text: ''
