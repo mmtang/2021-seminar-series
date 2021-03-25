@@ -98,7 +98,7 @@ drawGraph = (data) => {
                 .style('top', () => positionTooltipY(event))
                 .style('border-color', '#FFC0CB');
         })
-        .on('mouseout', function() {
+        .on('mouseout', () => {
             d3.select(event.currentTarget).style('fill', '#FFC0CB');
             d3.select(event.currentTarget).attr('r', 4);
             // Hide tooltip

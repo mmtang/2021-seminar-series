@@ -20,7 +20,7 @@ d3.selectAll("#venn .venn-circle path")
         return colors[i];
     });
 d3.selectAll('#venn text')
-    .style('fill', 'white')
+    .style('fill', '#fff')
     .style('font-size', '0.8em');
 d3.selectAll('#venn .venn-intersection')
     .style('fill', '#d1eef1')

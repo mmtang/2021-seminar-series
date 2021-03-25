@@ -17,7 +17,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --background-color: #03506f;
+  --background-color: #111b2b;
   --main-font: Ubuntu, sans-serif;
   --main-font-size: 40px;
   --main-color: #eee;
@@ -42,8 +42,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --selection-color: #fff; }
 
 .reveal-viewport {
-  background: #03506f;
-  background-color: #03506f; }
+  background: #111b2b;
+  background-color: #111b2b; }
 
 .reveal {
   font-family: Ubuntu, "sans-serif";
@@ -52,12 +52,12 @@ section.has-light-background, section.has-light-background h1, section.has-light
   color: #eee; }
 
 .reveal ::selection {
-  color: #03506f;
+  color: #202124;
   background: #a3ddcb;
   text-shadow: none; }
 
 .reveal ::-moz-selection {
-  color: #03506f;
+  color: #202124;
   background: #a3ddcb;
   text-shadow: none; }
 
