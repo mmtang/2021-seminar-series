@@ -15,7 +15,7 @@
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="lib/plugin/highlight/night-owl.css" id="highlight-theme">
 
-		<!-- JavaScript imports -->
+		<!-- Imports -->
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script href="https://code.highcharts.com/modules/venn.js"></script>	
 	</head>
@@ -38,12 +38,12 @@
 					</div>
 				</section>
 
-				<!-- Slide 3 - Background -->
+				<!-- Slide 2 - Background -->
 				<section class="center">
 					<h3>Background</h3>
 				</section>
 
-				<!-- Slide 4 - The web as a platform -->
+				<!-- Slide 3 - The web as a platform -->
 				<section class="left">
 					<h3 class="slide-title">The web as a platform</h3>
 					<div style="display: flex; flex-direction: row">
@@ -66,7 +66,7 @@
 					</div>
 				</section>
 
-				<!-- Slide 5 - The web as a platform -->
+				<!-- Slide 4 - What is web development? -->
 				<section>
 					<section class="left" data-transition="none">
 						<h3 class="slide-title">What is web development?</h3>
@@ -98,8 +98,8 @@
 					<section class="left" data-transition="none">
 						<h3 class="slide-title">What is web development?</h3>
 						<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
-							<div style="flex: 1; flex-grow: 1; color: #88e3c7; margin-right: 2.2em; padding: 0.5em; border: 1px solid #88e3c7">
-								<h5 style="color: #88e3c7; margin-bottom: 0.6em">Front-end</h5>
+							<div style="flex: 1; flex-grow: 1; color: #32edb4; margin-right: 2.2em; padding: 0.5em; border: 1px solid #32edb4">
+								<h5 style="color: #32edb4; margin-bottom: 0.6em">Front-end</h5>
 								<ul style="font-size: 0.8em">
 									<li>HTML</li>
 									<li>CSS</li>
@@ -123,24 +123,24 @@
 					</section>
 				</section>
 
-				<!-- Slide 6 - Data science vs. Web development -->
+				<!-- Slide 5 - Data science vs. Web development -->
 				<section class="center">
 					<h3 style="font-size: 1.2em">Data science vs. Web development</h3>
 					<div id="venn" styles="max-width: 600px; min-width: 300px"></div>
 				</section>
 
-				<!-- Slide 11 - Data Visualization Libraries -->
+				<!-- Slide 6 - JavaScript Charting Libraries -->
 				<section class="left">
-					<h3 style="font-size: 1.2em; margin-bottom: 1em">JavaScript Data Visualization Libraries</h3>
+					<h3 style="font-size: 1.2em; margin-bottom: 1em">JavaScript Charting Libraries</h3>
 					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.4em;">
 						<div style="flex: 1; font-size: 0.7em">
-							<h4 style="font-size: 0.9em; margin-bottom: 0.6em">High level</h4>
+							<h4 style="font-size: 0.9em; margin-bottom: 0.6em">High-level</h4>
 							<ul>
 								<li>High level of abstraction</li>
 								<li>Easy to use</li>
 								<li>Less customizable</li>
 							</ul>
-							<h4 style="font-size: 0.9em; margin-top: 1.2em; margin-bottom: 0.6em">Low level</h4>
+							<h4 style="font-size: 0.9em; margin-top: 1.2em; margin-bottom: 0.6em">Low-level</h4>
 							<ul>
 								<li>"Close to the hardware"</li>
 								<li>More difficult and time-consuming to use</li>
@@ -149,14 +149,14 @@
 						</div>
 						<div style="flex: 2; align-self: center; max-width: 600px">
 							<figure style="text-align: right;">
-								<img style="margin: auto" src="assets/data_viz_abstraction.png">
+								<img style="margin: auto" src="assets/data_viz_abstraction_white.png">
 								<a href="https://conlanscientific.com/posts/category/blog/post/use-d3-for-charts-dont-exist-yet/" target="_blank"><figcaption style="text-align: right; margin-top: 0.2em">Conlan Scientific</figcaption></a>
 							</figure>
 						</div>
 					</div>
 				</section>
 
-				<!-- Slide 12 - Code examples -->
+				<!-- Slide 7 - Highcharts Example -->
 				<section class="center">
 					<a href="https://www.highcharts.com/" target="_blank"><img style="width: 35%; margin: 0" src="assets/highcharts-logo.png" alt="Highcharts"></a>
 					<div style="display: flex; flex-direction: column">
@@ -176,10 +176,9 @@
 										chart: {
 											zoomType: 'x',
 											width: 700,
-											height: 280,
+											height: 250,
 											backgroundColor: 'transparent',
-											animation: false,
-											spacing: [15, 30, 5, 5],
+											animation: false
 										},
 										title: {
 											text: ''
@@ -240,13 +239,13 @@
 											enabled: false
 										}
 									});
-								}
+								}								
 							</code></pre>
 						</div>
 					</div>
 				</section>
 
-				<!-- Slide 13 - Code examples -->
+				<!-- Slide 8 - D3 Example -->
 				<section class="center">
 					<a href="https://d3js.org/" target="_blank"><img style="width: 36%; margin: 0.4em 0 0 0" src="assets/d3_logo.png" alt="Data Driven Documents (D3)"></a>
 					<div style="display: flex; flex-direction: column">
@@ -256,10 +255,10 @@
 						<div style="flex: 2; margin-left: 1em">
 							<pre><code data-trim data-noescape data-line-numbers>
 								drawGraph = (data) => {
-									const margin = { top: 10, right: 50, bottom: 50, left: 50 };
+									const margin = { top: 20, right: 10, bottom: 40, left: 50 };
 									const options = {
 										width: 700 - margin.left - margin.right,
-										height: 300 - margin.top - margin.bottom,
+										height: 280 - margin.top - margin.bottom,
 										data: data
 									};
 								
@@ -334,7 +333,7 @@
 											// Show tooltip
 											d3.select('#tooltipPoint') 
 												.transition()
-												.duration(200)
+												.duration(50)
 												.style('opacity', 1);
 											d3.select('#tooltipPoint')
 												.html(() => {
@@ -394,7 +393,7 @@
 					</div>
 				</section>
 
-				<!-- Slide 14 - Other languages  -->
+				<!-- Slide 9 - Best use cases -->
 				<section class="center" data-background-image="./assets/dawn_wall_nyt.png" data-background-size="cover" style="margin-top: 0.6em">
 					<div style="display: flex; flex-direction: column; justify-content: center; text-align: left;">
 						<div style="flex: 1; max-width: 45%; font-size: 0.7em">
@@ -411,37 +410,31 @@
 					</section>
 				</section>
 
-				<!-- Slide 11 - Safe to Swim Map -->
+				<!-- Slide 10 - Safe to Swim Map -->
 				<section class="full">
 					<a href="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" target="_blank"><h3>Safe to Swim Map</a> - My Water Quality Portal</h3>
-					<!--<iframe data-autoplay width="960" height="600" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>-->
+					<iframe data-autoplay width="960" height="580" src="https://www.mywaterquality.ca.gov/safe_to_swim/interactive_map/" frameborder="0"></iframe>
 				</section>
 
-				<!-- Slide 11 - Safe to Swim Map -->
+				<!-- Slide 11 - NYT 2013 Obama Budget -->
 				<section class="full">
-					<a href="https://gispublic.waterboards.ca.gov/swamp/r6/index.html" target="_blank"><h3>Water Quality Dashboard</a> - Lahontan Regional Water Board</h3>
-					<!--<iframe data-autoplay width="960" height="600" src="https://gispublic.waterboards.ca.gov/swamp/r6/index.html" frameborder="0"></iframe>-->
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3 style="margin-bottom: 0.4em">Four Ways to Slice Obama's 2013 Budget Proposal</a><br> - <span style="font-style: italic">The New York Times</span> (2012)</h3>
+					<iframe data-autoplay width="960" height="570" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>
 				</section>
 
-				<!-- Slide 9 - NYT 2013 Obama Budget -->
-				<section class="full">
-					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" target="_blank"><h3>Four Ways to Slice Obama's 2013 Budget Proposal</a><br> - <span style="font-style: italic">The New York Times</span> (2012)</h3>
-					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html" frameborder="0"></iframe>-->
-				</section>
-
-				<!-- Slide 10 - Examples -->
+				<!-- Slide 12 - Deck.gl -->
 				<section class="full">
 					<a href="https://deck.gl/examples/geojson-layer-paths/" target="_blank"><h3>Highway Safety in the US</a> - deck.gl</h3>
-					<!--<iframe data-autoplay width="760" height="600" src="https://deck.gl/examples/geojson-layer-paths/" frameborder="0"></iframe>-->
+					<iframe data-autoplay width="760" height="580" src="https://deck.gl/examples/geojson-layer-paths/" frameborder="0"></iframe>
 				</section>
 
-				<!-- Slide 11 - Safe to Swim Map -->
+				<!-- Slide 13 - America's Cup Finale -->
 				<section class="full">
-					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3>The America's Cup Finale: Oracle's Path to Victory</a><br> - <span style="font-style: italic">The New York Times</span> (2013)</h3>
-					<!--<iframe data-autoplay width="960" height="600" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>-->
+					<a href="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" target="_blank"><h3 style="margin-bottom: 0.4em">The America's Cup Finale: Oracle's Path to Victory</a><br> - <span style="font-style: italic">The New York Times</span> (2013)</h3>
+					<iframe data-autoplay width="960" height="580" src="https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/25/sports/americas-cup-course.html" frameborder="0"></iframe>
 				</section>
 
-				<!-- Slide 14 - Other languages  -->
+				<!-- Slide 14 - Other languages -->
 				<section class="left">
 					<h3 style="font-size: 1.4em; margin-bottom: 1em">Other platforms and languages</h3>
 					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin-top: 1.6em;">
@@ -461,33 +454,14 @@
 						</div>
 						<div style="flex: 2; align-self: center; max-width: 550px">
 							<figure style="text-align: right;">
-								<img style="margin: auto" src="assets/data_viz_abstraction.png">
+								<img style="margin: auto" src="assets/data_viz_abstraction_white.png">
 								<a href="https://conlanscientific.com/posts/category/blog/post/use-d3-for-charts-dont-exist-yet/" target="_blank"><figcaption style="text-align: right; margin-top: 0.2em">Conlan Scientific</figcaption></a>
 							</figure>
 						</div>
 					</div>
 				</section>
 
-				<!-- Slide 16 - Future of web development  -->
-				<!--
-				<section class="left">
-					<h3 style="font-size: 1.4em; margin-bottom: 0.8em">Looking ahead</h3>
-					<div style="display: flex; flex-direction: row">
-						<div style="flex: 1; padding: 0 0.8em 0 0">
-							<ul class="spaced">
-								<li>More integration with data science</li>
-								<li>Progressive web applications</li>
-								<li>Machine learning</li>
-							</ul>
-						</div>
-						<div style="flex: 2; max-width: 300px; text-align: right">
-							<blockquote><a href="https://medium.com/javascript-scene/how-popular-is-javascript-in-2019-823712f7c4b1" target="_blank">"Software ate the world, the web ate software, and JavaScript ate the web."</a></blockquote>
-						</div>
-					</div>
-				</section>
-				-->
-
-				<!-- Slide 17 - Getting started  -->
+				<!-- Slide 15 - Getting started  -->
 				<section class="left">
 					<h3 style="font-size: 1.4em">Getting started</h3>
 					<div style="display: flex; flex-direction: row">
@@ -513,7 +487,7 @@
 				</section>
 				
 
-				<!-- Slide 18 - Contact  -->
+				<!-- Slide 16 - Contact  -->
 				<section class="center">
 					<div class="intro-top" style="margin-bottom: 2em">
 						<h3 style="font-size: 1.2em;">Thank you!</h3>
